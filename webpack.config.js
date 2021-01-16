@@ -5,7 +5,6 @@ const webpack = require('webpack');
 module.exports = {
   entry: {
     app: './src/js/index.js',
-    'production-dependencies': ['phaser']
   },
 
   output: {
@@ -21,7 +20,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['env']
+            presets: ['@babel/preset-env']
           }
         }
       }
@@ -35,21 +34,17 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin([
       {
-        from: path.resolve(__dirname, 'index.html'),
+        from: path.resolve(__dirname, 'src/index.html'),
         to: path.resolve(__dirname, 'build')
       },
       {
-        from: path.resolve(__dirname, 'assets', '**', '*'),
+        from: path.resolve(__dirname, 'content', '**', '*'),
         to: path.resolve(__dirname, 'build')
       }
     ]),
     new webpack.DefinePlugin({
       'typeof CANVAS_RENDERER': JSON.stringify(true),
       'typeof WEBGL_RENDERER': JSON.stringify(true)
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'production-dependencies',
-      filename: 'production-dependencies.bundle.js'
     }),
   ],
 }
