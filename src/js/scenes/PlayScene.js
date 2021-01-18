@@ -21,7 +21,7 @@ export default class PlayScene extends Phaser.Scene {
       frameHeight: 16
     });
     this.load.image("sprLaserEnemy0", "content/play-scene/sprLaserEnemy0.png");
-    this.load.image("sprLaserPlayer", "content/play-scene/sprLaserPlayer.png");
+    this.load.image("playerLaser", "content/play-scene/playerLaser.png");
     this.load.image("playerShip", "content/play-scene/playerShip.png");
 
     this.load.audio("sndExplode0", "content/play-scene/sndExplode0.wav");
