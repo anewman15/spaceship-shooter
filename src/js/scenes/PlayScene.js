@@ -1,4 +1,5 @@
 import 'phaser';
+import AlienShip from '../entities/AlienShip';
 import PlayerShip from '../entities/PlayerShip';
 
 export default class PlayScene extends Phaser.Scene {
@@ -11,18 +12,16 @@ export default class PlayScene extends Phaser.Scene {
       frameWidth: 32,
       frameHeight: 32
     });
-    this.load.spritesheet("sprEnemy0", "content/play-scene/sprEnemy0.png", {
-      frameWidth: 16,
-      frameHeight: 16
-    });
+    this.load.image("playerShip", "content/play-scene/playerShip.png");
+    this.load.image("playerLaser", "content/play-scene/playerLaser.png");
+    this.load.image("alienShip", "content/play-scene/alienShip.png");
+    this.load.image("alienLaser", "content/play-scene/alienLaser.png");
+
     this.load.image("sprEnemy1", "content/play-scene/sprEnemy1.png");
     this.load.spritesheet("sprEnemy2", "content/play-scene/sprEnemy2.png", {
       frameWidth: 16,
       frameHeight: 16
     });
-    this.load.image("sprLaserEnemy0", "content/play-scene/sprLaserEnemy0.png");
-    this.load.image("playerLaser", "content/play-scene/playerLaser.png");
-    this.load.image("playerShip", "content/play-scene/playerShip.png");
 
     this.load.audio("sndExplode0", "content/play-scene/sndExplode0.wav");
     this.load.audio("sndExplode1", "content/play-scene/sndExplode1.wav");
@@ -79,9 +78,20 @@ export default class PlayScene extends Phaser.Scene {
     this.keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
     this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
-    this.enemies = this.add.group();
-    this.enemyLasers = this.add.group();
+    this.alienShips = this.add.group();
+    this.alienLasers = this.add.group();
     this.playerLasers = this.add.group();
+
+      this.time.addEvent({
+        delay: 2000,
+        callback: () => {
+          const alienShip = new AlienShip(
+            this,
+            Phaser.Math.Between(0, this.game.config.width),
+            0
+          );
+        },
+      })
 
     // this.time.addEvent({
     //   delay: 2000,
@@ -121,25 +131,25 @@ export default class PlayScene extends Phaser.Scene {
     //   loop: true
     // });
 
-    this.physics.add.collider(this.playerLasers, this.enemies, function(playerLaser, enemy) {
-      if (enemy) {
-        if (enemy.onDestroy !== undefined) {
-          enemy.onDestroy();
-        }
+    // this.physics.add.collider(this.playerLasers, this.enemies, function(playerLaser, enemy) {
+    //   if (enemy) {
+    //     if (enemy.onDestroy !== undefined) {
+    //       enemy.onDestroy();
+    //     }
 
-        enemy.explode(true);
-        playerLaser.destroy();
-      }
-    });
+    //     enemy.explode(true);
+    //     playerLaser.destroy();
+    //   }
+    // });
 
-    this.physics.add.overlap(this.player, this.enemyLasers, function(player, laser) {
-      if (!player.getData("isDead") &&
-          !laser.getData("isDead")) {
-        player.explode(false);
-        laser.destroy();
-        player.onDestroy();
-      }
-    });
+    // this.physics.add.overlap(this.player, this.enemyLasers, function(player, laser) {
+    //   if (!player.getData("isDead") &&
+    //       !laser.getData("isDead")) {
+    //     player.explode(false);
+    //     laser.destroy();
+    //     player.onDestroy();
+    //   }
+    // });
   }
 
   update() {
@@ -167,61 +177,61 @@ export default class PlayScene extends Phaser.Scene {
       }
     }
 
-    for (var i = 0; i < this.enemies.getChildren().length; i++) {
-      var enemy = this.enemies.getChildren()[i];
+    for (let i = 0; i < this.alienShips.getChildren().length; i++) {
+      var alienShip = this.alienShips.getChildren()[i];
 
-      enemy.update();
+      alienShip.update();
 
-      if (enemy.x < -enemy.displayWidth ||
-        enemy.x > this.game.config.width + enemy.displayWidth ||
-        enemy.y < -enemy.displayHeight * 4 ||
-        enemy.y > this.game.config.height + enemy.displayHeight) {
+      // if (enemy.x < -enemy.displayWidth ||
+      //   enemy.x > this.game.config.width + enemy.displayWidth ||
+      //   enemy.y < -enemy.displayHeight * 4 ||
+      //   enemy.y > this.game.config.height + enemy.displayHeight) {
 
-        if (enemy) {
-          if (enemy.onDestroy !== undefined) {
-            enemy.onDestroy();
-          }
+      //   if (enemy) {
+      //     if (enemy.onDestroy !== undefined) {
+      //       enemy.onDestroy();
+      //     }
 
-          enemy.destroy();
-        }
-      }
+      //     enemy.destroy();
+      //   }
+      // }
     }
 
-    for (var i = 0; i < this.enemyLasers.getChildren().length; i++) {
-      var laser = this.enemyLasers.getChildren()[i];
-      laser.update();
+    // for (var i = 0; i < this.enemyLasers.getChildren().length; i++) {
+    //   var laser = this.enemyLasers.getChildren()[i];
+    //   laser.update();
 
-      if (laser.x < -laser.displayWidth ||
-        laser.x > this.game.config.width + laser.displayWidth ||
-        laser.y < -laser.displayHeight * 4 ||
-        laser.y > this.game.config.height + laser.displayHeight) {
-        if (laser) {
-          laser.destroy();
-        }
-      }
-    }
+    //   if (laser.x < -laser.displayWidth ||
+    //     laser.x > this.game.config.width + laser.displayWidth ||
+    //     laser.y < -laser.displayHeight * 4 ||
+    //     laser.y > this.game.config.height + laser.displayHeight) {
+    //     if (laser) {
+    //       laser.destroy();
+    //     }
+    //   }
+    // }
 
-    for (var i = 0; i < this.playerLasers.getChildren().length; i++) {
-      var laser = this.playerLasers.getChildren()[i];
-      laser.update();
+    // for (var i = 0; i < this.playerLasers.getChildren().length; i++) {
+    //   var laser = this.playerLasers.getChildren()[i];
+    //   laser.update();
 
-      if (laser.x < -laser.displayWidth ||
-        laser.x > this.game.config.width + laser.displayWidth ||
-        laser.y < -laser.displayHeight * 4 ||
-        laser.y > this.game.config.height + laser.displayHeight) {
-        if (laser) {
-          laser.destroy();
-        }
-      }
-    }
+    //   if (laser.x < -laser.displayWidth ||
+    //     laser.x > this.game.config.width + laser.displayWidth ||
+    //     laser.y < -laser.displayHeight * 4 ||
+    //     laser.y > this.game.config.height + laser.displayHeight) {
+    //     if (laser) {
+    //       laser.destroy();
+    //     }
+    //   }
+    // }
 
-    if (this.keySpace.isDown) {
-      this.player.setData("isShooting", true);
-    }
-    else {
-      this.player.setData("timerShootTick", this.player.getData("timerShootDelay") - 1);
-      this.player.setData("isShooting", false);
-    }
+    // if (this.keySpace.isDown) {
+    //   this.player.setData("isShooting", true);
+    // }
+    // else {
+    //   this.player.setData("timerShootTick", this.player.getData("timerShootDelay") - 1);
+    //   this.player.setData("isShooting", false);
+    // }
   }
 
   getEnemiesByType(type) {
