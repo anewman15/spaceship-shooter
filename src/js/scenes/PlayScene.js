@@ -30,32 +30,11 @@ export default class PlayScene extends Phaser.Scene {
 
   create() {
     this.anims.create({
-      key: "sprEnemy0",
-      frames: this.anims.generateFrameNumbers("sprEnemy0"),
-      frameRate: 20,
-      repeat: -1
-    });
-
-    this.anims.create({
-      key: "sprEnemy2",
-      frames: this.anims.generateFrameNumbers("sprEnemy2"),
-      frameRate: 20,
-      repeat: -1
-    });
-
-    this.anims.create({
       key: "sprExplosion",
       frames: this.anims.generateFrameNumbers("sprExplosion"),
       frameRate: 20,
       repeat: 0
     });
-
-    // this.anims.create({
-    //   key: "playerShip",
-    //   frames: this.anims.generateFrameNumbers("sprPlayer"),
-    //   frameRate: 20,
-    //   repeat: -1
-    // });
 
     this.sfx = {
       explosions: [
