@@ -26,7 +26,7 @@ export default class PlayScene extends Phaser.Scene {
 
     this.load.audio("sndExplode0", "content/play-scene/sndExplode0.wav");
     this.load.audio("sndExplode1", "content/play-scene/sndExplode1.wav");
-    this.load.audio("sndLaser", "content/play-scene/sndLaser.wav");
+    this.load.audio("sfxPlayerLaser", "content/play-scene/sfxPlayerLaser.ogg");
   }
 
   create() {
@@ -63,7 +63,7 @@ export default class PlayScene extends Phaser.Scene {
         this.sound.add("sndExplode0"),
         this.sound.add("sndExplode1")
       ],
-      laser: this.sound.add("sndLaser")
+      laser: this.sound.add("sfxPlayerLaser")
     };
 
     this.player = new PlayerShip(
