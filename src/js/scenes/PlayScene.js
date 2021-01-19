@@ -8,38 +8,39 @@ export default class PlayScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.spritesheet("sprExplosion", "content/play-scene/sprExplosion.png", {
-      frameWidth: 32,
-      frameHeight: 32
+    this.load.spritesheet('explosion', 'content/play-scene/explosion.png', {
+      frameWidth: 64,
+      frameHeight: 64
     });
     this.load.image("playerShip", "content/play-scene/playerShip.png");
     this.load.image("playerLaser", "content/play-scene/playerLaser.png");
     this.load.image("alienShip", "content/play-scene/alienShip.png");
     this.load.image("alienLaser", "content/play-scene/alienLaser.png");
 
-    this.load.image("sprEnemy1", "content/play-scene/sprEnemy1.png");
-    this.load.spritesheet("sprEnemy2", "content/play-scene/sprEnemy2.png", {
-      frameWidth: 16,
-      frameHeight: 16
-    });
-
-    this.load.audio("sndExplode0", "content/play-scene/sndExplode0.wav");
-    this.load.audio("sndExplode1", "content/play-scene/sndExplode1.wav");
     this.load.audio("sfxPlayerLaser", "content/play-scene/sfxPlayerLaser.ogg");
+    this.load.audio('sfxPlayerShipExplosion', "content/play-scene/sfxPlayerShipExplosion.wav");
+    this.load.audio('sfxAlienShipExplosion', "content/play-scene/sfxAlienShipExplosion.wav");
   }
 
   create() {
     this.anims.create({
-      key: "sprExplosion",
-      frames: this.anims.generateFrameNumbers("sprExplosion"),
+      key: 'alienShipExplosion',
+      frames: this.anims.generateFrameNames('explosion', { start: 30, end: 52 }),
+      frameRate: 40,
+      repeat: 0
+    });
+
+    this.anims.create({
+      key: 'playerShipExplosion',
+      frames: this.anims.generateFrameNumbers('explosion', { start: 25, end: 56 }),
       frameRate: 20,
       repeat: 0
     });
 
     this.sfx = {
       explosions: [
-        this.sound.add("sndExplode0"),
-        this.sound.add("sndExplode1")
+        this.sound.add('sfxPlayerShipExplosion'),
+        this.sound.add("sfxAlienShipExplosion")
       ],
       laser: this.sound.add("sfxPlayerLaser")
     };
@@ -119,7 +120,7 @@ export default class PlayScene extends Phaser.Scene {
           alienShip.onDestroy();
         }
 
-        alienShip.explode(true);
+        alienShip.explode(true, 'alienShipExplosion', 1);
         playerLaser.destroy();
       }
     });
@@ -127,7 +128,7 @@ export default class PlayScene extends Phaser.Scene {
     this.physics.add.overlap(this.player, this.alienLasers, (playerShip, alienLaser) => {
       if (!playerShip.getData("isDead") &&
           !alienLaser.getData("isDead")) {
-        playerShip.explode(false);
+        playerShip.explode(false, 'playerShipExplosion', 0);
         alienLaser.destroy();
         playerShip.onDestroy();
       }
