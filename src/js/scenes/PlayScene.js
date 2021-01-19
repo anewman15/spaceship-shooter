@@ -76,44 +76,6 @@ export default class PlayScene extends Phaser.Scene {
       loop: true
     });
 
-    // this.time.addEvent({
-    //   delay: 2000,
-    //   callback: function() {
-    //     var enemy = null;
-    //     if (Phaser.Math.Between(0, 10) >= 3) {
-    //       enemy = new GunShip(
-    //         this,
-    //         Phaser.Math.Between(0, this.game.config.width),
-    //         0
-    //       );
-    //     }
-    //     else if (Phaser.Math.Between(0, 10) >= 5) {
-    //       if (this.getEnemiesByType("ChaserShip").length < 5) {
-
-    //         enemy = new ChaserShip(
-    //           this,
-    //           Phaser.Math.Between(0, this.game.config.width),
-    //           0
-    //         );
-    //       }
-    //     }
-    //     else {
-    //       enemy = new CarrierShip(
-    //         this,
-    //         Phaser.Math.Between(0, this.game.config.width),
-    //         0
-    //       );
-    //     }
-
-    //     if (enemy !== null) {
-    //       enemy.setScale(Phaser.Math.Between(10, 20) * 0.1);
-    //       this.enemies.add(enemy);
-    //     }
-    //   },
-    //   callbackScope: this,
-    //   loop: true
-    // });
-
     this.physics.add.collider(this.playerLasers, this.alienShips, (playerLaser, alienShip) => {
       if (alienShip) {
         if (alienShip.onDestroy !== undefined) {

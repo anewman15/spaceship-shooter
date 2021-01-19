@@ -12,11 +12,9 @@ export default class Entity extends Phaser.GameObjects.Sprite {
 
   explode(canExplode, explosionKey, sfxKey) {
     if (!this.getData("isDead")) {
-      // Set the texture to the explosion image, then play the animation
-      this.setTexture(explosionKey);  // this refers to the same animation key we used when we added this.anims.create previously
-      this.play(explosionKey); // play the animation
+      this.setTexture(explosionKey);
+      this.play(explosionKey);
 
-      // pick a random explosion sound within the array we defined in this.sfx in SceneMain
       this.scene.sfx.explosions[sfxKey].play();
 
       if (this.shootTimer !== undefined) {
