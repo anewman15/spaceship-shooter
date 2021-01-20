@@ -45,6 +45,13 @@ export default class PlayScene extends Phaser.Scene {
       laser: this.sound.add("sfxPlayerLaser")
     };
 
+    this.score = 0;
+    this.scoreText = this.add.text(660, 16, 'Score: 0', { fontSize: '18px', fill: '#fff' });
+    this.updateScore = () => {
+      this.score += 10;
+      this.scoreText.setText('Score: ' + this.score);
+    }
+
     this.player = new PlayerShip(
       this,
       this.game.config.width * 0.5,
@@ -80,6 +87,7 @@ export default class PlayScene extends Phaser.Scene {
       if (alienShip) {
         if (alienShip.onDestroy !== undefined) {
           alienShip.onDestroy();
+          this.updateScore();
         }
 
         alienShip.explode(true, 'alienShipExplosion', 1);
@@ -136,7 +144,6 @@ export default class PlayScene extends Phaser.Scene {
           if (alienShip.onDestroy !== undefined) {
             alienShip.onDestroy();
           }
-
           alienShip.destroy();
         }
       }
