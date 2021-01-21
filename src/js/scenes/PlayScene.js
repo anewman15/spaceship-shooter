@@ -46,7 +46,10 @@ export default class PlayScene extends Phaser.Scene {
     };
 
     this.user = this.sys.game.globals.user;
-    this.scoreText = this.add.text(660, 16, 'Score: 0', { fontSize: '18px', fill: '#fff' });
+    this.usernameText = this.add.text(16, 16, `${this.user.username}`, { fontSize: '18px', fill: '#fff' });
+
+    this.user.score = 0;
+    this.scoreText = this.add.text(660, 16, `Score: ${this.user.score}`, { fontSize: '18px', fill: '#fff' });
     this.updateScore = () => {
       this.user.score += 10;
       this.scoreText.setText('Score: ' + this.user.score);
