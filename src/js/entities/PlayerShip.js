@@ -48,9 +48,9 @@ export default class PlayerShip extends Entity {
 
   onDestroy() {
     this.scene.time.addEvent({
-      delay: 1000,
-      callback: function() {
-        this.scene.scene.start("SceneGameOver");
+      delay: 5000,
+      callback: () => {
+        this.scene.scene.start('GameOver');
       },
       callbackScope: this,
       loop: false

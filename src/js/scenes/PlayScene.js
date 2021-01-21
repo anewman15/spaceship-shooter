@@ -45,11 +45,11 @@ export default class PlayScene extends Phaser.Scene {
       laser: this.sound.add("sfxPlayerLaser")
     };
 
-    this.score = 0;
+    this.user = this.sys.game.globals.user;
     this.scoreText = this.add.text(660, 16, 'Score: 0', { fontSize: '18px', fill: '#fff' });
     this.updateScore = () => {
-      this.score += 10;
-      this.scoreText.setText('Score: ' + this.score);
+      this.user.score += 10;
+      this.scoreText.setText('Score: ' + this.user.score);
     }
 
     this.player = new PlayerShip(
