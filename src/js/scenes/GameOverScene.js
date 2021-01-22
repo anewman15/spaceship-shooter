@@ -1,31 +1,30 @@
-import 'phaser';
+import Phaser from 'phaser';
 import config from '../config';
 import Button from '../entities/Button';
 import { postScore } from '../user-data/api';
 
 export default class GameOverScene extends Phaser.Scene {
-  constructor() {
-    super('GameOver');
-  }
+	constructor() {
+		super('GameOver');
+	}
 
-  create() {
-    this.gameOverText = this.add.text(config.width/2, config.height/2 - 200, 'Game Over', { fontSize: '48px', fill: '#fff' });
-    this.gameOverText.setOrigin(0.5, 0.5);
+	create() {
+		this.gameOverText = this.add.text(config.width / 2, config.height / 2 - 200, 'Game Over', { fontSize: '48px', fill: '#fff' });
+		this.gameOverText.setOrigin(0.5, 0.5);
 
-    this.user = this.sys.game.globals.user;
-    this.scoreText = this.add.text(config.width/2, config.height/2 - 100, `Your Score: ${this.user.score}`, { fontSize: '32px', fill: '#fff' });
-    this.scoreText.setOrigin(0.5, 0.5);
+		this.user = this.sys.game.globals.user;
+		this.scoreText = this.add.text(config.width / 2, config.height / 2 - 100, `Your Score: ${this.user.score}`, { fontSize: '32px', fill: '#fff' });
+		this.scoreText.setOrigin(0.5, 0.5);
 
-    this.uri = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/HlhJM0tltblLcmbw1VvF/scores/';
-    this.userScore = {
-      user: this.user.username,
-      score: this.user.score
-    }
+		this.uri = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/HlhJM0tltblLcmbw1VvF/scores/';
+		this.userScore = {
+			user: this.user.username,
+			score: this.user.score,
+		};
 
-    postScore(this.uri, this.userScore);
+		postScore(this.uri, this.userScore);
 
-    this.playAgainButton = new Button(this, config.width/2, config.height/2 + 50, 'blueButton', 'greenButton', 'Play Again', 'Play');
-    this.leaderboardButton = new Button(this, config.width/2, config.height/2 + 120, 'blueButton', 'greenButton', 'Leaderboard', 'Leaderboard');
-
-  }
-};
+		this.playAgainButton = new Button(this, config.width / 2, config.height / 2 + 50, 'blueButton', 'greenButton', 'Play Again', 'Play');
+		this.leaderboardButton = new Button(this, config.width / 2, config.height / 2 + 120, 'blueButton', 'greenButton', 'Leaderboard', 'Leaderboard');
+	}
+}

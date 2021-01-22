@@ -1,6 +1,6 @@
-import 'phaser';
+import Phaser from 'phaser';
 import config from './config';
-import User from  './user-data/User';
+import User from './user-data/User';
 import BootScene from './scenes/BootScene';
 import PreloaderScene from './scenes/PreloaderScene';
 import TitleScene from './scenes/TitleScene';
