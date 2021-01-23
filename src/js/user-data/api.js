@@ -1,4 +1,4 @@
-export const postScore = async (apiUri, userInfo) => {
+export const postScore = async (userInfo) => {
 	const optionsObject = {
 		method: 'POST',
 		mode: 'cors',
@@ -8,7 +8,8 @@ export const postScore = async (apiUri, userInfo) => {
 		},
 	};
 	try {
-		const response = await fetch(apiUri, optionsObject);
+		const uri = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/HlhJM0tltblLcmbw1VvF/scores/';
+		const response = await fetch(uri, optionsObject);
 		const data = await response.json();
 		return data;
 	} catch (error) {
