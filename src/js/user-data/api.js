@@ -11,7 +11,7 @@ export const postScore = async (userInfo) => {
 		const uri = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/HlhJM0tltblLcmbw1VvF/scores/';
 		const response = await fetch(uri, optionsObject);
 		const data = await response.json();
-		return data;
+		return data.result;
 	} catch (error) {
 		return "Score couldn't be saved :(";
 	}
