@@ -28,10 +28,10 @@ module.exports = {
 				use: {
 					loader: 'babel-loader',
 					options: {
-						presets: ['env', 'es2015', 'stage-0'],
+						presets: ['@babel/preset-env'],
 						plugins: [
 							[
-								'transform-runtime',
+								'@babel/plugin-transform-runtime',
 								{
 									regenerator: true,
 								},
