@@ -7,15 +7,18 @@
     <style>
       canvas {
         display: block;
-        margin: auto;
+        margin: 20px auto;
       }
     </style>
   </head>
   <body>
     <div class="container-fluid">
-      <form action="" id="form-username">
+      <h1 class="display-5 font-weight-bold text-center m3">SpaceShip Shooter</h1>
+    </div>
+    <div id="form-container" class="container-fluid w-50 mx-auto my-5">
+      <form action="" id="form-player-name">
         <div class="form-group">
-          <label for="player-name">Player Name</label>
+          <label for="player-name" class="font-weight-bold">Player Name</label>
           <input type="text" id="player-name" class="form-control" placeholder="Please enter player name" required>
         </div>
         <button type="sbmit" class="btn btn-success">Save and Start</button>
