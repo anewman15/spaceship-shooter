@@ -1,13 +1,9 @@
-/*
-  eslint-disable import/prefer-default-export
-*/
-
 import Game from '../Game';
 
 const formPlayerName = document.getElementById('form-player-name');
 const formContainer = document.getElementById('form-container');
 
-export const formEventListener = () => {
+const formEventListener = () => {
 	formPlayerName.addEventListener('submit', (e) => {
 		e.preventDefault();
 		const playerName = document.getElementById('player-name').value;
@@ -17,3 +13,5 @@ export const formEventListener = () => {
 		formContainer.classList.add('d-none');
 	});
 };
+
+export default { formEventListener };

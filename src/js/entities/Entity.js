@@ -1,7 +1,3 @@
-/*
-  eslint-disable func-names
-*/
-
 import Phaser from 'phaser';
 
 export default class Entity extends Phaser.GameObjects.Sprite {
@@ -30,7 +26,7 @@ export default class Entity extends Phaser.GameObjects.Sprite {
 			this.setAngle(0);
 			this.body.setVelocity(0, 0);
 
-			this.on('animationcomplete', function () {
+			this.on('animationcomplete', () => {
 				if (canExplode) {
 					this.destroy();
 				} else {

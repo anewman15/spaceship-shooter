@@ -1,3 +1,3 @@
-import { formEventListener } from './user-data/form';
+import Form from './user-data/form';
 
-formEventListener();
+Form.formEventListener();
