@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Spaceship shooter game with Phaser 3",
   "scripts": {
-    "test": "jest",
+    "test": "jest --verbose",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "start": "npm run build && webpack-dev-server --port=8080 --open"
