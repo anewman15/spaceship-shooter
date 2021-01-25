@@ -108,7 +108,7 @@ The `Play` scene creates
 4. Press `X` to move down
 5. Press `SPACE` to shoot
 
-In order to **continue** doing the above actions keep pressing the respective keys `down`
+In order to **continue** doing the above actions keep the respective keys in pressed `down` state
 
 ### **Scoring**
 1. Each downed Enemy Ship earns the Player 10 points
