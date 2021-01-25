@@ -3,53 +3,64 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: {
-    app: './src/js/index.js',
-    'production-dependencies': ['phaser']
-  },
+	entry: {
+		app: './src/js/index.js',
+	},
 
-  output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'app.bundle.js'
-  },
+	output: {
+		path: path.resolve(__dirname, 'build'),
+		filename: 'app.bundle.js',
+	},
 
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        include: path.resolve(__dirname, 'src/'),
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['env']
-          }
-        }
-      }
-    ]
-  },
+	module: {
+		rules: [
+			{
+				test: /\.css$/i,
+				use: ['style-loader', 'css-loader'],
+			},
+			{
+				test: /\.s[ac]ss$/i,
+				use: ['style-loader', 'css-loader', 'sass-loader'],
+			},
+			{
+				test: /\.js$/,
+				include: path.resolve(__dirname, 'src/'),
+				use: {
+					loader: 'babel-loader',
+					options: {
+						presets: ['@babel/preset-env'],
+						plugins: [
+							[
+								'@babel/plugin-transform-runtime',
+								{
+									regenerator: true,
+								},
+							],
+						],
+					},
+				},
+			},
+		],
+	},
 
-  devServer: {
-    contentBase: path.resolve(__dirname, 'build'),
-  },
+	devServer: {
+		contentBase: path.resolve(__dirname, 'build'),
+	},
 
-  plugins: [
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, 'index.html'),
-        to: path.resolve(__dirname, 'build')
-      },
-      {
-        from: path.resolve(__dirname, 'assets', '**', '*'),
-        to: path.resolve(__dirname, 'build')
-      }
-    ]),
-    new webpack.DefinePlugin({
-      'typeof CANVAS_RENDERER': JSON.stringify(true),
-      'typeof WEBGL_RENDERER': JSON.stringify(true)
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'production-dependencies',
-      filename: 'production-dependencies.bundle.js'
-    }),
-  ],
-}
+	plugins: [
+		new CopyWebpackPlugin([
+			{
+				from: path.resolve(__dirname, 'src/index.html'),
+				to: path.resolve(__dirname, 'build'),
+			},
+			{
+				from: path.resolve(__dirname, 'content', '**', '*'),
+				to: path.resolve(__dirname, 'build'),
+			},
+		]),
+		new webpack.DefinePlugin({
+			'typeof CANVAS_RENDERER': JSON.stringify(true),
+			'typeof WEBGL_RENDERER': JSON.stringify(true),
+		}),
+	],
+};

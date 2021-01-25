@@ -2,12 +2,17 @@
   "name": "spaceship-shooter",
   "version": "1.0.0",
   "description": "Spaceship shooter game with Phaser 3",
-  "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --verbose",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "start": "npm run build && webpack-dev-server --port=8080 --open"
+  },
+  "jest": {
+    "automock": false,
+    "setupFiles": [
+      "./setup-jest.js"
+    ]
   },
   "repository": {
     "type": "git",
@@ -25,12 +30,28 @@
   "homepage": "https://github.com/anewman15/spaceship-shooter#readme",
   "devDependencies": {
     "@babel/core": "^7.7.2",
-    "@babel/preset-env": "^7.7.1",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/preset-env": "^7.12.10",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.6.3",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^4.5.1",
+    "css-loader": "^5.0.1",
+    "eslint": "^7.14.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
     "file-loader": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^26.6.3",
     "raw-loader": "^3.1.0",
+    "sass": "^1.29.0",
+    "sass-loader": "^10.1.0",
+    "style-loader": "^2.0.0",
+    "stylelint": "^13.8.0",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-csstree-validator": "^1.9.0",
+    "stylelint-scss": "^3.18.0",
     "terser-webpack-plugin": "^2.2.1",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
@@ -38,6 +59,10 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "phaser": "^3.52.0"
+    "@babel/polyfill": "^7.12.1",
+    "@babel/runtime": "^7.12.5",
+    "jest-fetch-mock": "^3.0.3",
+    "phaser": "^3.52.0",
+    "regenerator-runtime": "^0.13.7"
   }
 }
