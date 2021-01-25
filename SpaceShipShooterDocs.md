@@ -1,5 +1,6 @@
 # SpaceShip Shooter Documentation
 
+
 ## **Content**
 1. [SpaceShip Shooter Documentation](#spaceship-shooter-documentation)
 2. [Content](#content)
@@ -8,6 +9,7 @@
 5. [Scenes](#scenes)
 6. [Game Instructions](#game-instructions)
 7. [Troubleshooting](#troubleshooting)
+
 
 ## **Story**
 This game is about surviving attacks by alien spaceships. You can either avoid them or score points by shooting them or score higher points by combining both.
@@ -65,6 +67,14 @@ This scene is dedicated to acknowledge the use of open source materials and appr
 ![Leaderboard Scene](./credits.png)
 
 ## **Game Instructions**
+
+### **Start Game**
+In order to play the game, use one of the following links:
+- Open `http://localhost:8080/` in your browser and navigate around the site
+OR
+Visit the [Live Demo](https://rawcdn.githack.com/anewman15/spaceship-shooter/97bd660c6f2d3f82a708e62480a48243516095fc/build/index.html) link
+- Follow the instructions below
+
 ### **Create Player**
 1. Use the form to create a player by entering name so you can track your score in the Leaderbord.
 
