@@ -70,9 +70,8 @@ This scene is dedicated to acknowledge the use of open source materials and appr
 
 ### **Start Game**
 In order to play the game, use one of the following links:
-- Open `http://localhost:8080/` in your browser and navigate around the site
-OR
-Visit the [Live Demo](https://rawcdn.githack.com/anewman15/spaceship-shooter/97bd660c6f2d3f82a708e62480a48243516095fc/build/index.html) link
+
+- Visit the [Live Demo](https://600fbcbdd5bbebd7cb02aac1--frosty-kowalevski-6e65fe.netlify.app/) link
 - Follow the instructions below
 
 ### **Create Player**
@@ -108,7 +107,7 @@ The `Play` scene creates
 4. Press `X` to move down
 5. Press `SPACE` to shoot
 
-In order to **continue** doing the above actions keep the respective keys in pressed `down` state
+In order to **continue** doing the above actions keep the respective keys in `down` state
 
 ### **Scoring**
 1. Each downed Enemy Ship earns the Player 10 points
