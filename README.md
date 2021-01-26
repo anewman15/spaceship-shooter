@@ -37,9 +37,11 @@ This is a SpaceShip Shooter game developed using Phaser 3. Users have to create 
 ## Game Instructions
 In order to play the game, use one of the following links:
 - Open `http://localhost:8080/` in your browser and navigate around the site
-OR
-Visit the [Live Demo](https://rawcdn.githack.com/anewman15/spaceship-shooter/97bd660c6f2d3f82a708e62480a48243516095fc/build/index.html) link
-- Follow the [docs](./SpaceShipShooterDocs.md) for game information and instructions
+
+  OR
+
+  Visit the [Live Demo](https://600fbcbdd5bbebd7cb02aac1--frosty-kowalevski-6e65fe.netlify.app/) link
+- Follow the [SpaceShip Shooter Docs](./SpaceShipShooterDocs.md) for game information and instructions
 
 
 ## Live Demo
